@@ -63,7 +63,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Side",
-"speed": 12.0
+"speed": 24.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -83,7 +83,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Vertical",
-"speed": 12.0
+"speed": 24.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hkf6d"]
@@ -98,7 +98,7 @@ script = ExtResource("1_l3d2b")
 visible = false
 position = Vector2(0, -27)
 sprite_frames = SubResource("SpriteFrames_7n333")
-animation = &"Vertical"
+animation = &"Side"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.5, -27.5)

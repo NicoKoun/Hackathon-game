@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://np3phx4lfqml"]
+[gd_scene load_steps=16 format=3 uid="uid://4xbg2x3k5qgq"]
 
 [ext_resource type="Script" uid="uid://duft1c7gmp24o" path="res://Scripts/knight.gd" id="1_b66j6"]
 [ext_resource type="Texture2D" uid="uid://yokarpvx03jw" path="res://Sprites/Knight.png" id="1_rrk28"]
@@ -122,5 +122,10 @@ shape = SubResource("RectangleShape2D_b66j6")
 wait_time = 0.3
 autostart = true
 
+[node name="Movement" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
 [connection signal="body_entered" from="player collision" to="." method="_on_player_collision_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Movement" to="." method="_on_movement_timeout"]
