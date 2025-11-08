@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqujf3yclu8by"]
+
+[ext_resource type="Texture2D" uid="uid://2nfbhj6j6663" path="res://Sprites/Pumpkin Ghost.png" id="1_uvkhs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvm7d"]
+atlas = ExtResource("1_uvkhs")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n3nwn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvm7d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l4a55"]
+size = Vector2(16, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e7nnr"]
+size = Vector2(17.75, 28)
+
+[node name="Pumpkin man" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n3nwn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -3)
+shape = SubResource("RectangleShape2D_l4a55")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1.875, -3)
+shape = SubResource("RectangleShape2D_e7nnr")
