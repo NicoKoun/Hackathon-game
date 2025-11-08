@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dppjqaanqa3al"]
+[gd_scene load_steps=9 format=3 uid="uid://dppjqaanqa3al"]
 
 [ext_resource type="Script" uid="uid://c4k1exrf4la3m" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://cpjbc02daefk7" path="res://Sprites/guyster(OLD).png" id="2_6t5aa"]
+[ext_resource type="PackedScene" uid="uid://5jn6brdwk3u3" path="res://Scenes/sword.tscn" id="2_fkybt"]
 [ext_resource type="Shader" uid="uid://bmxjrje64gk8y" path="res://Sprites/player.gdshader" id="2_vgqql"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
@@ -16,6 +17,26 @@ region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_i3pqv"]
 animations = [{
+"frames": [],
+"loop": true,
+"name": &"attackdown",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"attackleft",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"attackright",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"attackup",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_i3pqv")
@@ -65,13 +86,15 @@ collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_cvnsp")
 
+[node name="sword" parent="." instance=ExtResource("2_fkybt")]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_fkybt")
 sprite_frames = SubResource("SpriteFrames_i3pqv")
-animation = &"walkright"
+animation = &"attackleft"
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 rect = Rect2(-15, -16, 31, 32)

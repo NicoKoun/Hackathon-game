@@ -35,7 +35,6 @@ func _physics_process(delta):
 	
 	move_and_slide()
 func _on_player_collision_body_entered(body):
-	print(body.name)
 	if body.name == "player":
 		if body.invince == false:
 			body.gethurt()
