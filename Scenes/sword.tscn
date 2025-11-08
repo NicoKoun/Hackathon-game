@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://5jn6brdwk3u3"]
+
+[ext_resource type="Script" uid="uid://ds7kjmbdgisxa" path="res://Scripts/sword.gd" id="1_l3d2b"]
+[ext_resource type="Texture2D" uid="uid://ckiat0ekyammj" path="res://Sprites/sword.png" id="1_nv07v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agfwr"]
+atlas = ExtResource("1_nv07v")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0ab8"]
+atlas = ExtResource("1_nv07v")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_va3ln"]
+atlas = ExtResource("1_nv07v")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7n333"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_agfwr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0ab8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_va3ln")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_va3ln")
+}],
+"loop": false,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hkf6d"]
+size = Vector2(27, 33)
+
+[node name="sword" type="Area2D"]
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("1_l3d2b")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -27)
+sprite_frames = SubResource("SpriteFrames_7n333")
+frame = 3
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.5, -27.5)
+shape = SubResource("RectangleShape2D_hkf6d")
+disabled = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(2.5, -11)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
