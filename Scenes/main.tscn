@@ -1,7 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccwut7ltta4yr"]
+[gd_scene load_steps=4 format=3 uid="uid://ccwut7ltta4yr"]
 
+[ext_resource type="Script" uid="uid://6r3q6t8f1vdy" path="res://Scripts/main.gd" id="1_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://dppjqaanqa3al" path="res://Scenes/player.tscn" id="1_jjgbg"]
+[ext_resource type="PackedScene" uid="uid://c6emq81t0tque" path="res://Scenes/ememy.tscn" id="3_8gbba"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_bo1nx")
 
-[node name="Player" parent="." instance=ExtResource("1_jjgbg")]
+[node name="player" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0
+
+[node name="player" parent="player" instance=ExtResource("1_jjgbg")]
+
+[node name="ememy" parent="." instance=ExtResource("3_8gbba")]
