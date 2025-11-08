@@ -92,12 +92,12 @@ func _on_shoot_timer_timeout():
 	$Timer.stop()
 	prevdir = dir
 	dir = 0
-	#get_node("AnimatedSprite2D").play("attack")
+	get_node("AnimatedSprite2D").play("attack")
 	if HP > 0:
-		#await get_node("AnimatedSprite2D").animation_finished
+		await get_node("AnimatedSprite2D").animation_finished
 		var newKnife = Shoot.instantiate()
 		newKnife.global_position = self.global_position
-		newKnife.init(player.position.angle_to_point(self.position))
+		#newKnife.init(player.position.angle_to_point(self.position))
 		get_parent().add_child(newKnife)
 		get_node("AnimatedSprite2D").play("default")
 		dir = prevdir
