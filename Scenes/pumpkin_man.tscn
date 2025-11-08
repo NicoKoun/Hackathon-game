@@ -1,7 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://betsak2jifj1a"]
+[gd_scene load_steps=10 format=3 uid="uid://betsak2jifj1a"]
 
 [ext_resource type="Texture2D" uid="uid://2nfbhj6j6663" path="res://Sprites/Pumpkin Ghost.png" id="1_uvkhs"]
 [ext_resource type="Script" uid="uid://cf6mh30g72knt" path="res://Scripts/pumpkin_man.gd" id="1_vvm7d"]
+[ext_resource type="Texture2D" uid="uid://o4saecs1br00" path="res://Sprites/Pumpkin with Attack.png" id="2_n3nwn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4a55"]
+atlas = ExtResource("2_n3nwn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7nnr"]
+atlas = ExtResource("2_n3nwn")
+region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vvm7d"]
 atlas = ExtResource("1_uvkhs")
@@ -9,10 +18,16 @@ region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n3nwn"]
 animations = [{
-"frames": [],
-"loop": true,
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4a55")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7nnr")
+}],
+"loop": false,
 "name": &"attack",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
