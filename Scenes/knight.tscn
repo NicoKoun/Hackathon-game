@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://np3phx4lfqml"]
+[gd_scene load_steps=11 format=3 uid="uid://np3phx4lfqml"]
 
 [ext_resource type="Texture2D" uid="uid://yokarpvx03jw" path="res://Sprites/Knight.png" id="1_rrk28"]
 
@@ -18,13 +18,13 @@ region = Rect2(32, 32, 32, 32)
 atlas = ExtResource("1_rrk28")
 region = Rect2(0, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t38ji"]
-atlas = ExtResource("1_rrk28")
-region = Rect2(32, 0, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_pbj7x"]
 atlas = ExtResource("1_rrk28")
 region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t38ji"]
+atlas = ExtResource("1_rrk28")
+region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fxof2"]
 animations = [{
@@ -57,20 +57,34 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_t38ji")
+"texture": SubResource("AtlasTexture_pbj7x")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pbj7x")
+"texture": SubResource("AtlasTexture_t38ji")
 }],
 "loop": true,
 "name": &"Run_Front",
 "speed": 4.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rrk28"]
+size = Vector2(17, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b66j6"]
+size = Vector2(19, 30)
+
 [node name="Knight" type="CharacterBody2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fxof2")
-animation = &"Run_Back"
+animation = &"Run_Front"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 2)
+shape = SubResource("RectangleShape2D_rrk28")
+
+[node name="player collision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player collision"]
+position = Vector2(0.5, 2)
+shape = SubResource("RectangleShape2D_b66j6")
