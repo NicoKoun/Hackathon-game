@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://betsak2jifj1a"]
+
+[ext_resource type="Texture2D" uid="uid://2nfbhj6j6663" path="res://Sprites/Pumpkin Ghost.png" id="1_uvkhs"]
+[ext_resource type="Script" uid="uid://cf6mh30g72knt" path="res://Scripts/pumpkin_man.gd" id="1_vvm7d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvm7d"]
+atlas = ExtResource("1_uvkhs")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n3nwn"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvm7d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l4a55"]
+size = Vector2(16, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e7nnr"]
+size = Vector2(17.75, 28)
+
+[node name="Pumpkin man" type="CharacterBody2D"]
+process_mode = 4
+collision_layer = 9
+collision_mask = 9
+script = ExtResource("1_vvm7d")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n3nwn")
+animation = &"attack"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -3)
+shape = SubResource("RectangleShape2D_l4a55")
+
+[node name="player collision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player collision"]
+position = Vector2(-1.875, -3)
+shape = SubResource("RectangleShape2D_e7nnr")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-10, -16, 16, 26)
+
+[node name="shootTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.5
+autostart = true
+
+[connection signal="body_entered" from="player collision" to="." method="_on_player_collision_body_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="shootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

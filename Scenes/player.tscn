@@ -1,0 +1,114 @@
+[gd_scene load_steps=9 format=3 uid="uid://dppjqaanqa3al"]
+
+[ext_resource type="Script" uid="uid://c4k1exrf4la3m" path="res://Scripts/player.gd" id="1_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://cpjbc02daefk7" path="res://Sprites/guyster(OLD).png" id="2_6t5aa"]
+[ext_resource type="PackedScene" uid="uid://5jn6brdwk3u3" path="res://Scenes/sword.tscn" id="2_fkybt"]
+[ext_resource type="Shader" uid="uid://bmxjrje64gk8y" path="res://Sprites/player.gdshader" id="2_vgqql"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fkybt"]
+shader = ExtResource("2_vgqql")
+shader_parameter/active = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
+atlas = ExtResource("2_6t5aa")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i3pqv"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"attackdown",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"attackleft",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"attackright",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"attackup",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3pqv")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walkdown",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walkleft",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walkright",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walkup",
+"speed": 5.0
+}]
+
+[node name="player" type="CharacterBody2D" groups=["gamer"]]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_cvnsp")
+
+[node name="sword" parent="." instance=ExtResource("2_fkybt")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_fkybt")
+sprite_frames = SubResource("SpriteFrames_i3pqv")
+animation = &"attackleft"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-15, -16, 31, 32)
+
+[node name="hurttimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="invincetimer" type="Timer" parent="."]
+wait_time = 1.2
+
+[node name="blinktimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="hurttimer" to="." method="_on_hurttimer_timeout"]
+[connection signal="timeout" from="invincetimer" to="." method="_on_invincetimer_timeout"]
+[connection signal="timeout" from="blinktimer" to="." method="_on_blinktimer_timeout"]

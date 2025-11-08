@@ -1,0 +1,80 @@
+[gd_scene load_steps=7 format=3 uid="uid://bhvgtmunokp3f"]
+
+[ext_resource type="Theme" path="res://Sprites/hpbar.tres" id="1_guosq"]
+[ext_resource type="Script" uid="uid://bvvrjpf25mmk" path="res://Scripts/hpbar.gd" id="1_naub1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y0odt"]
+bg_color = Color(0.254902, 0.00392157, 0.32549, 0.266667)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ufem1"]
+bg_color = Color(0.478431, 0.0196078, 0.6, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_emfnj"]
+bg_color = Color(0.670588, 0.0745098, 0.101961, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0cy5y"]
+bg_color = Color(0.0235294, 0.729412, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0, 0, 0, 0)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_naub1")
+
+[node name="BossBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 1249.0
+offset_top = 5.0
+offset_right = 1588.0
+offset_bottom = 43.0
+theme = ExtResource("1_guosq")
+theme_override_styles/background = SubResource("StyleBoxFlat_y0odt")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ufem1")
+max_value = 30.0
+value = 10.0
+fill_mode = 1
+show_percentage = false
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 7.0
+offset_right = 351.0
+offset_bottom = 45.0
+theme = ExtResource("1_guosq")
+theme_override_styles/background = SubResource("StyleBoxFlat_emfnj")
+theme_override_styles/fill = SubResource("StyleBoxFlat_0cy5y")
+max_value = 30.0
+value = 10.0
+show_percentage = false
