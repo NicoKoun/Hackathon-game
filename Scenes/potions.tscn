@@ -12,6 +12,10 @@ func init(d):
 		heal = 10
 		$Small.set_visible(false)
 		$Big.set_visible(true)
+	else:
+		heal = 3
+		$Small.set_visible(true)
+		$Big.set_visible(false)
 	
 
 
