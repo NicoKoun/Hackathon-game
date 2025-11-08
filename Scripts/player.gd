@@ -141,18 +141,18 @@ func death():
 	#Game.muted = true
 	$invincetimer.stop()
 	#Game.sword = false
-	var camera = $"../Camera2D"
+	#var camera = $"../Camera2D"
 	#Game.dead = true
 	set_collision_layer_value(1, false)
 	set_collision_mask_value(1, false)
 	set_collision_layer_value(2, false)
 	set_collision_mask_value(2, false)
-	camera.get_child(0).visible = true
+	#camera.get_child(0).visible = true
 	for n in range(1, 7):
 		get_node("AnimatedSprite2D").visible = !get_node("AnimatedSprite2D").visible
 		await get_tree().create_timer(0.1).timeout
 	get_node("AnimatedSprite2D").play("death")
-	$AudioStreamPlayer.play()
+	#$AudioStreamPlayer.play()
 	await get_node("AnimatedSprite2D").animation_finished
 	get_node("AnimatedSprite2D").visible = false
 	#$deathTimer.start()
