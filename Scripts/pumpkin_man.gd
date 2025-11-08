@@ -62,7 +62,7 @@ func hurt():
 		$Timer.start()
 
 func death():
-	var number =6 #randi_range(1, 30)
+	var number = randi_range(1, 30)
 	dir = 0
 	$Timer.stop()
 	$shootTimer.stop()
