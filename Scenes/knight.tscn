@@ -18,13 +18,13 @@ region = Rect2(32, 32, 32, 32)
 atlas = ExtResource("1_rrk28")
 region = Rect2(0, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t38ji"]
-atlas = ExtResource("1_rrk28")
-region = Rect2(32, 0, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_pbj7x"]
 atlas = ExtResource("1_rrk28")
 region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t38ji"]
+atlas = ExtResource("1_rrk28")
+region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fxof2"]
 animations = [{
@@ -57,10 +57,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_t38ji")
+"texture": SubResource("AtlasTexture_pbj7x")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pbj7x")
+"texture": SubResource("AtlasTexture_t38ji")
 }],
 "loop": true,
 "name": &"Run_Front",
@@ -71,6 +71,6 @@ animations = [{
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fxof2")
-animation = &"Run_Back"
+animation = &"Run_Front"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
