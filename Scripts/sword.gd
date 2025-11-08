@@ -9,25 +9,28 @@ func init(direction):
 	if direction == "down":
 		self.rotation = PI
 		self.position.x += 6
+		get_node("AnimatedSprite2D").play("Vertical")
 	elif direction == "right":
 		self.rotation = PI/2
 		self.position.y += 9
 		self.position.x -= 2
 		$CollisionShape2D.position.x -= 6
 		dirright = true
+		get_node("AnimatedSprite2D").play("Side")
 	elif direction == "left":
 		self.rotation = PI*3/2
 		self.position.y += 9
 		self.position.x += 2
+		get_node("AnimatedSprite2D").play("Side")
 	else:
 		self.rotation = 0
 		self.position.x -= 6
 		self.position.y += 6
-	get_node("AnimatedSprite2D").play("default")
+		get_node("AnimatedSprite2D").play("Vertical")
+	
 
 func _process(delta):
 	if Input.is_action_just_pressed("Attack") and get_node("AnimatedSprite2D").is_playing():
-		get_node("AnimatedSprite2D").play("default")
 		get_node("CollisionShape2D").disabled = false
 
 func _on_body_entered(body: PhysicsBody2D) -> void:
