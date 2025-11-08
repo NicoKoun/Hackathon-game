@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=4 uid="uid://ccwut7ltta4yr"]
 
 [ext_resource type="Script" uid="uid://6r3q6t8f1vdy" path="res://Scripts/main.gd" id="1_bo1nx"]
-[ext_resource type="PackedScene" uid="uid://dppjqaanqa3al" path="res://Scenes/player.tscn" id="1_jjgbg"]
+[ext_resource type="PackedScene" path="res://Scenes/player.tscn" id="1_jjgbg"]
 [ext_resource type="Texture2D" uid="uid://cejte5auv8gnh" path="res://Sprites/overworld obstacles.png" id="2_jjvhh"]
-[ext_resource type="PackedScene" uid="uid://c6emq81t0tque" path="res://Scenes/ememy.tscn" id="3_8gbba"]
-[ext_resource type="PackedScene" uid="uid://bhvgtmunokp3f" path="res://Scenes/hpbar.tscn" id="5_kry3j"]
+[ext_resource type="PackedScene" path="res://Scenes/ememy.tscn" id="3_8gbba"]
+[ext_resource type="PackedScene" path="res://Scenes/hpbar.tscn" id="5_kry3j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kry3j"]
 texture = ExtResource("2_jjvhh")
