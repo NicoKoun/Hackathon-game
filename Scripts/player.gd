@@ -42,6 +42,7 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("Attack") and Game.sword == true:# or Game.got == true and Game.sword and Game.dead == false:
 		#var actionables = actionable_finder.get_overlapping_areas()
+		
 		Game.canmove = false
 		Game.sword = false
 		velocity.y = 0 
