@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://v20hh25t25he"]
+
+[ext_resource type="Texture2D" uid="uid://d0uh5qtr5ndyx" path="res://Sprites/SmallHealthPotion.png" id="1_hok44"]
+[ext_resource type="Texture2D" uid="uid://cs65swe53gfq1" path="res://Sprites/BigHealthPot.png" id="2_do34j"]
+
+[sub_resource type="GDScript" id="GDScript_ymkk0"]
+script/source = "extends Area2D
+var heal = 3
+
+func init(d):
+	if d == 5:
+		heal = 10
+		$Small.set_visible(false)
+		$Big.set_visible(true)
+	
+
+
+	
+func _on_body_entered(body):
+	if body.name == \"player\":
+		Game.playerHP += heal
+		var tween = get_tree().create_tween()
+		$CollisionShape2D.queue_free()
+		tween.tween_property(self, \"position\", position - Vector2(0,25), 0.1)
+		tween.tween_property(self, \"modulate:a\", 0, 0.1)
+		tween.tween_callback(queue_free)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hok44"]
+size = Vector2(20, 31)
+
+[node name="Potions" type="Area2D"]
+script = SubResource("GDScript_ymkk0")
+
+[node name="Small" type="Sprite2D" parent="."]
+texture = ExtResource("1_hok44")
+
+[node name="Big" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_do34j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_hok44")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

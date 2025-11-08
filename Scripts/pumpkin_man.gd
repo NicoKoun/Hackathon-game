@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-#const Star = preload("res://Star.tscn")
+const potion = preload("res://Scenes/potions.tscn")
 const SPEED = 80.0
 const JUMP_VELOCITY = -400.0
 var HP = 5
@@ -62,21 +62,21 @@ func hurt():
 		$Timer.start()
 
 func death():
-	var number = randi_range(1, 30)
+	var number =6 #randi_range(1, 30)
 	dir = 0
 	$Timer.stop()
 	$shootTimer.stop()
 	$AnimatedSprite2D.play("death")
-	$AudioStreamPlayer.play()
+	#$AudioStreamPlayer.play()
 	await $AnimatedSprite2D.animation_finished
-	#if number <= 6:
-		#var newStar = Star.instantiate()
-		#get_parent().add_child(newStar)
-		#newStar.global_position = self.global_position
-		#if number < 6:
-			#newStar.init(1)
-		#else:
-			#newStar.init(5)
+	if number <= 6:
+		var newStar = potion.instantiate()
+		get_parent().add_child(newStar)
+		newStar.global_position = self.global_position
+		if number < 6:
+			newStar.init(1)
+		else:
+			newStar.init(5)
 	self.queue_free()
 
 
