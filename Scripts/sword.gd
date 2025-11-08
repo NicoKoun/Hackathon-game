@@ -12,19 +12,19 @@ func init(direction):
 		get_node("AnimatedSprite2D").play("Vertical")
 	elif direction == "right":
 		self.rotation = PI/2
-		self.position.y += 9
+		#self.position.y += 9
 		self.position.x -= 2
-		$CollisionShape2D.position.x -= 6
-		dirright = true
+		#$CollisionShape2D.position.x -= 6
+		#dirright = true
 		get_node("AnimatedSprite2D").play("Side")
 	elif direction == "left":
 		self.rotation = PI*3/2
-		self.position.y += 9
+		#self.position.y += 9
 		self.position.x += 2
 		get_node("AnimatedSprite2D").play("Side")
 	else:
 		self.rotation = 0
-		self.position.x -= 6
+		self.position.x += 6
 		self.position.y += 6
 		get_node("AnimatedSprite2D").play("Vertical")
 	
@@ -46,8 +46,8 @@ func _on_animated_sprite_2d_animation_finished():
 	$AnimatedSprite2D.visible = false
 	get_parent().Attack = false
 	position = ogposition
-	if dirright == true:
-		$CollisionShape2D.position.x += 6
-		dirright = false
+	#if dirright == true:
+		#$CollisionShape2D.position.x += 6
+		#dirright = false
 	#queue_free()
 	
