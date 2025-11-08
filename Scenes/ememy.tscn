@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c6emq81t0tque"]
 
+[ext_resource type="PackedScene" uid="uid://np3phx4lfqml" path="res://Scenes/knight.tscn" id="1_4fs34"]
 [ext_resource type="PackedScene" uid="uid://0xhhbwns2t0m" path="res://Scenes/slime.tscn" id="1_qqdpm"]
-[ext_resource type="PackedScene" uid="uid://dhst82anlj2dv" path="res://Scenes/shooty gremlin.tscn" id="2_81lx3"]
 [ext_resource type="PackedScene" uid="uid://betsak2jifj1a" path="res://Scenes/pumpkin_man.tscn" id="3_4fs34"]
 
 [node name="ememy" type="Node2D"]
@@ -9,8 +9,8 @@
 [node name="slime" parent="." instance=ExtResource("1_qqdpm")]
 position = Vector2(916, 561)
 
-[node name="shooty gremlin" parent="." instance=ExtResource("2_81lx3")]
-position = Vector2(358, 173)
-
 [node name="Pumpkin man" parent="." instance=ExtResource("3_4fs34")]
-position = Vector2(477, 208)
+position = Vector2(1286, 634)
+
+[node name="Knight" parent="." instance=ExtResource("1_4fs34")]
+position = Vector2(103, 67)
