@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 #const Star = preload("res://Star.tscn")
-const SPEED = 120.0
+const SPEED = 100.0
 const JUMP_VELOCITY = -400.0
 var HP = 5
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -11,6 +11,9 @@ const Shoot = preload("res://Scenes/shoot pellet.tscn")
 var player
 var prevdir = 1
 var angle
+var timer = 0.0
+var moving = false
+
 func _ready():
 	player = get_node("../../player/player")
 	get_node("AnimatedSprite2D").play("Idle_Front")
@@ -18,22 +21,38 @@ func _ready():
 	
 
 func _physics_process(delta):
-	if dir == 0:
-		velocity.x = 0
-		velocity.y = 0
-	elif dir == 1:
+	if timer <= 0.0:
+		moving = not moving
+		timer = 4.0
+	if rad_to_deg(angle) > 90 or rad_to_deg(angle) < -90:
+		get_node("AnimatedSprite2D").flip_h = false
+	else:
+		get_node("AnimatedSprite2D").flip_h = true
+	if moving:
 		velocity.x = SPEED * delta * cos(angle) * -1
 		velocity.y = SPEED * delta * sin(angle) * -1
+		if rad_to_deg(angle) > 0:
+			get_node("AnimatedSprite2D").play("Run_Back")
+		else:
+			get_node("AnimatedSprite2D").play("Run_Front")
+	else:
+		velocity.x = 0
+		velocity.y = 0
+		if rad_to_deg(angle) > 0:
+			get_node("AnimatedSprite2D").play("Idle_Back")
+		else:
+			get_node("AnimatedSprite2D").play("Idle_Front")
 		
 	if(get_real_velocity() == Vector2(0,0)) and dir != 0:
 		changedir()
+	timer -= delta
 	
 	translate(velocity)
 func _on_player_collision_body_entered(body):
 	if body.name == "player":
 		if body.invince == false:
 			body.gethurt()
-			Game.playerHP -= 3
+			Game.playerHP -= 5
 
 func hurt():
 	HP -= 1
