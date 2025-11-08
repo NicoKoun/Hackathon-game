@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 #const Star = preload("res://Star.tscn")
-const SPEED = 80.0
+const SPEED = 120.0
 const JUMP_VELOCITY = -400.0
 var HP = 5
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -10,9 +10,11 @@ var dir = 1
 const Shoot = preload("res://Scenes/shoot pellet.tscn")
 var player
 var prevdir = 1
+var angle
 func _ready():
 	player = get_node("../../player/player")
 	get_node("AnimatedSprite2D").play("Idle_Front")
+	changedir()
 	
 
 func _physics_process(delta):
@@ -20,25 +22,13 @@ func _physics_process(delta):
 		velocity.x = 0
 		velocity.y = 0
 	elif dir == 1:
-		velocity.x = SPEED
-		velocity.y = 0
-		get_node("AnimatedSprite2D").play("Run_Front")
-	elif dir == 2:
-		velocity.x = SPEED * -1
-		velocity.y = 0
-		get_node("AnimatedSprite2D").play("Run_Front")
-		get_node("AnimatedSprite2D").flip_h = true
-	elif dir == 3:
-		velocity.x = 0
-		velocity.y = SPEED
-	elif dir == 4:
-		velocity.x = 0
-		velocity.y = SPEED * -1
+		velocity.x = SPEED * delta * cos(angle) * -1
+		velocity.y = SPEED * delta * sin(angle) * -1
 		
 	if(get_real_velocity() == Vector2(0,0)) and dir != 0:
 		changedir()
 	
-	move_and_slide()
+	translate(velocity)
 func _on_player_collision_body_entered(body):
 	if body.name == "player":
 		if body.invince == false:
@@ -53,23 +43,18 @@ func hurt():
 	else:
 		tween.tween_property($AnimatedSprite2D, "modulate:v", 1, 0.25).from(15)
 		$Timer.stop()
-		$shootTimer.stop()
-		var prevdir = dir
-		if prevdir == 0:
-			prevdir = randi_range(1, 4)
 		dir = 0
 		await get_tree().create_timer(0.5).timeout
-		dir = prevdir
-		$shootTimer.start()
+		dir = 1
 		$Timer.start()
 
 func death():
 	var number = randi_range(1, 30)
 	dir = 0
 	$Timer.stop()
-	$shootTimer.stop()
+	#$shootTimer.stop()
 	$AnimatedSprite2D.play("death")
-	$AudioStreamPlayer.play()
+	#$AudioStreamPlayer.play()
 	await $AnimatedSprite2D.animation_finished
 	#if number <= 6:
 		#var newStar = Star.instantiate()
@@ -86,7 +71,7 @@ func _on_timer_timeout():
 	changedir()
 	
 func changedir():
-	dir = randi_range(1, 4)
+	angle = player.position.angle_to_point(self.position)
 	
 
 

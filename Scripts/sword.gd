@@ -34,9 +34,6 @@ func _on_body_entered(body: PhysicsBody2D) -> void:
 	if body.is_in_group("enemy"):
 		body.hurt()
 		get_node("CollisionShape2D").disabled = true
-	elif body.is_in_group("golf"):
-		body.shoot($Marker2D.global_position.angle_to_point(body.global_position))
-		get_node("CollisionShape2D").disabled = true
 
 
 func _on_animated_sprite_2d_animation_finished():
