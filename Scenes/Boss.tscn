@@ -71,7 +71,7 @@ size = Vector2(16, 26)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e7nnr"]
 size = Vector2(17.75, 28)
 
-[node name="Pumpkin man" type="CharacterBody2D" groups=["enemy"]]
+[node name="Boss" type="CharacterBody2D" groups=["enemy"]]
 process_mode = 4
 collision_layer = 9
 collision_mask = 9
@@ -101,8 +101,13 @@ autostart = true
 wait_time = 2.5
 autostart = true
 
+[node name="breakTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="body_entered" from="player collision" to="." method="_on_player_collision_body_entered"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="shootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="breakTimer" to="." method="_on_break_timer_timeout"]
