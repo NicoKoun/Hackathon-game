@@ -141,9 +141,9 @@ func death():
 	get_node("AnimatedSprite2D").visible = true
 	#Game.muted = true
 	$invincetimer.stop()
-	#Game.sword = false
+	Game.sword = false
 	#var camera = $"../Camera2D"
-	#Game.dead = true
+	Game.boss = false
 	set_collision_layer_value(1, false)
 	set_collision_mask_value(1, false)
 	set_collision_layer_value(2, false)

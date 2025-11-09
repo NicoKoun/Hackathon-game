@@ -1,13 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://cc7ob534sxcrf"]
+[gd_scene load_steps=9 format=4 uid="uid://cc7ob534sxcrf"]
 
 [ext_resource type="Script" uid="uid://6r3q6t8f1vdy" path="res://Scripts/main.gd" id="1_35xla"]
+[ext_resource type="Texture2D" uid="uid://c7a33susr7m06" path="res://Sprites/Water.png" id="2_35xla"]
 [ext_resource type="PackedScene" uid="uid://dppjqaanqa3al" path="res://Scenes/player.tscn" id="3_5wyu1"]
-[ext_resource type="PackedScene" uid="uid://0xhhbwns2t0m" path="res://Scenes/slime.tscn" id="4_i3aeo"]
 [ext_resource type="PackedScene" uid="uid://bhvgtmunokp3f" path="res://Scenes/hpbar.tscn" id="5_2cgwh"]
 [ext_resource type="PackedScene" uid="uid://bi1e2u3mufkpk" path="res://Scenes/chest.tscn" id="5_35xla"]
+[ext_resource type="PackedScene" uid="uid://cx21iajg3b5xw" path="res://Scenes/Boss.tscn" id="5_i3aeo"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i3aeo"]
+texture = ExtResource("2_35xla")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSet" id="TileSet_5wyu1"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 15
+physics_layer_0/collision_mask = 15
+sources/0 = SubResource("TileSetAtlasSource_i3aeo")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_35xla")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA0AAAAAAAAAAAABAAAAAAAAAAAAAAABAA0AAAAAAAAAAAACAAAAAAAAAAAAAAACAA0AAAAAAAAAAAADAAAAAAAAAAAAAAADAA0AAAAAAAAAAAAEAAAAAAAAAAAAAAAEAA0AAAAAAAAAAAAFAAAAAAAAAAAAAAAFAA0AAAAAAAAAAAAGAAAAAAAAAAAAAAAGAA0AAAAAAAAAAAAHAAAAAAAAAAAAAAAHAA0AAAAAAAAAAAAIAAAAAAAAAAAAAAAIAA0AAAAAAAAAAAAJAAAAAAAAAAAAAAAJAA0AAAAAAAAAAAAKAAAAAAAAAAAAAAAKAA0AAAAAAAAAAAALAAAAAAAAAAAAAAALAA0AAAAAAAAAAAAMAAAAAAAAAAAAAAAMAA0AAAAAAAAAAAANAAAAAAAAAAAAAAANAA0AAAAAAAAAAAAOAAAAAAAAAAAAAAAOAA0AAAAAAAAAAAAPAAAAAAAAAAAAAAAPAA0AAAAAAAAAAAAQAAAAAAAAAAAAAAAQAA0AAAAAAAAAAAARAAAAAAAAAAAAAAARAA0AAAAAAAAAAAASAAAAAAAAAAAAAAASAA0AAAAAAAAAAAATAAAAAAAAAAAAAAATAA0AAAAAAAAAAAAUAAAAAAAAAAAAAAAUAA0AAAAAAAAAAAAVAAAAAAAAAAAAAAAVAA0AAAAAAAAAAAAWAAAAAAAAAAAAAAAWAA0AAAAAAAAAAAAXAAAAAAAAAAAAAAAXAA0AAAAAAAAAAAAYAAAAAAAAAAAAAAAYAAEAAAAAAAAAAAAYAAIAAAAAAAAAAAAYAAMAAAAAAAAAAAAYAAQAAAAAAAAAAAAYAAUAAAAAAAAAAAAYAAYAAAAAAAAAAAAYAAcAAAAAAAAAAAAYAAgAAAAAAAAAAAAYAAkAAAAAAAAAAAAYAAoAAAAAAAAAAAAYAAsAAAAAAAAAAAAYAAwAAAAAAAAAAAAYAA0AAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_5wyu1")
 
 [node name="player" type="Node2D" parent="."]
 
@@ -24,10 +41,10 @@ position = Vector2(400, 242)
 
 [node name="Control" parent="CanvasLayer" instance=ExtResource("5_2cgwh")]
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Boss" type="Node2D" parent="."]
 
-[node name="slime" parent="Node2D" instance=ExtResource("4_i3aeo")]
-position = Vector2(555, 302)
+[node name="Boss" parent="Boss" instance=ExtResource("5_i3aeo")]
+position = Vector2(389, 169)
 
 [node name="Chest" parent="." instance=ExtResource("5_35xla")]
 position = Vector2(568, 151)
