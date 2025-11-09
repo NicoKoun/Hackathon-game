@@ -372,7 +372,7 @@ script = ExtResource("1_me6e5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_n3nwn")
-animation = &"boulder attack backward"
+animation = &"idle left"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, -3)

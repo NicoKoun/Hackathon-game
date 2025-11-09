@@ -1,13 +1,14 @@
 extends CharacterBody2D
 
-const potion = preload("res://Scenes/potions.tscn")
+
 const SPEED = 80.0
 const JUMP_VELOCITY = -400.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var dir = 1
 #Change this to a rock
-const Shoot = preload("res://Scenes/shoot pellet.tscn")
+const Shoot = preload("res://Scenes/Rockthrow.tscn")
+const Quake = preload("res://Scenes/Quake(1996).tscn")
 #Also add quake attack.
 var player
 var prevdir = 1
@@ -16,7 +17,7 @@ var takingbreak = false
 func _ready():
 	#add audio stream player
 	player = get_node("../../player/player")
-	get_node("AnimatedSprite2D").play("default")
+	
 	
 
 func _physics_process(delta):
@@ -24,15 +25,19 @@ func _physics_process(delta):
 		velocity.x = 0
 		velocity.y = 0
 	elif dir == 1:
+		get_node("AnimatedSprite2D").play("idle right")
 		velocity.x = SPEED
 		velocity.y = 0
 	elif dir == 2:
+		get_node("AnimatedSprite2D").play("idle left")
 		velocity.x = SPEED * -1
 		velocity.y = 0
 	elif dir == 3:
+		get_node("AnimatedSprite2D").play("idle forward")
 		velocity.x = 0
 		velocity.y = SPEED
 	elif dir == 4:
+		get_node("AnimatedSprite2D").play("idle backward")
 		velocity.x = 0
 		velocity.y = SPEED * -1
 		
@@ -66,21 +71,12 @@ func hurt():
 			$Timer.start()
 
 func death():
-	var number = randi_range(1, 30)
 	dir = 0
 	$Timer.stop()
 	$shootTimer.stop()
 	$AnimatedSprite2D.play("death")
 	#$AudioStreamPlayer.play()
 	await $AnimatedSprite2D.animation_finished
-	if number <= 6:
-		var newStar = potion.instantiate()
-		get_parent().add_child(newStar)
-		newStar.global_position = self.global_position
-		if number < 6:
-			newStar.init(1)
-		else:
-			newStar.init(5)
 	self.queue_free()
 
 
@@ -107,18 +103,27 @@ func _on_shoot_timer_timeout():
 			prevdir = randi_range(1, 4)
 		dir = 0
 	elif num % 2 == 1:
-		get_node("AnimatedSprite2D").play("rockthrow")
+		get_node("AnimatedSprite2D").play("boulder attack forward")
 		if Game.bossHP > 0:
 			await get_node("AnimatedSprite2D").animation_finished
 			var newKnife = Shoot.instantiate()
 			newKnife.global_position = self.global_position
-			#newKnife.init(player.position.angle_to_point(self.position))
+			newKnife.init(player.position.angle_to_point(self.position))
 			get_parent().add_child(newKnife)
 			get_node("AnimatedSprite2D").play("default")
 			dir = prevdir
 			$Timer.start()
 	elif num % 2 == 0:
-		print("quake attack")
+		get_node("AnimatedSprite2D").play("rockthrow")
+		if Game.bossHP > 0:
+			await get_node("AnimatedSprite2D").animation_finished
+			var newKnife = Quake.instantiate()
+			newKnife.global_position = self.global_position
+			newKnife.init(player.position.angle_to_point(self.position))
+			get_parent().add_child(newKnife)
+			get_node("AnimatedSprite2D").play("default")
+			dir = prevdir
+			$Timer.start()
 	
 
 
