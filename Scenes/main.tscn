@@ -11,9 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://donprnql3iysj" path="res://Sprites/Crate.png" id="6_d1ilt"]
 [ext_resource type="Texture2D" uid="uid://buddd8nprj4wq" path="res://Sprites/Barrel.png" id="7_6iyac"]
 [ext_resource type="Texture2D" uid="uid://pvrij08182ln" path="res://Sprites/DungeronTile.png" id="8_d1ilt"]
-[ext_resource type="PackedScene" uid="uid://cuto1eqfjvbwo" path="res://Scenes/Coin.tscn" id="12_6iyac"]
+[ext_resource type="PackedScene" uid="uid://b016cw2fpkmit" path="res://Scenes/Coin.tscn" id="12_6iyac"]
 [ext_resource type="PackedScene" uid="uid://v20hh25t25he" path="res://Scenes/potions.tscn" id="13_fdnlq"]
-[ext_resource type="PackedScene" uid="uid://cah273vehy7qc" path="res://Scenes/chest.tscn" id="14_jkdf5"]
+[ext_resource type="PackedScene" uid="uid://bi1e2u3mufkpk" path="res://Scenes/chest.tscn" id="14_jkdf5"]
 [ext_resource type="PackedScene" path="res://Scenes/crown.tscn" id="15_wsu2k"]
 [ext_resource type="PackedScene" path="res://Scripts/area_2d.tscn" id="16_h1bgf"]
 [ext_resource type="PackedScene" uid="uid://cx21iajg3b5xw" path="res://Scenes/Boss.tscn" id="17_b3802"]
@@ -192,7 +192,7 @@ sources/3 = SubResource("TileSetAtlasSource_k12tt")
 sources/4 = SubResource("TileSetAtlasSource_h1bgf")
 sources/5 = SubResource("TileSetAtlasSource_b3802")
 
-[node name="Main" type="Node2D"]
+[node name="Main2" type="Node2D"]
 script = ExtResource("1_bo1nx")
 
 [node name="Floor" type="TileMapLayer" parent="."]
@@ -431,10 +431,10 @@ position = Vector2(2416, 2000)
 [node name="Area2D4" parent="." instance=ExtResource("16_h1bgf")]
 position = Vector2(2416, 2032)
 
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2(1986, 1978)
+[node name="Boss" type="Node2D" parent="."]
 
-[node name="Boss" parent="Node2D" instance=ExtResource("17_b3802")]
+[node name="Boss" parent="Boss" instance=ExtResource("17_b3802")]
+position = Vector2(1986, 1978)
 
 [node name="sfx_background" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("18_b3802")

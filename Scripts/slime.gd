@@ -81,7 +81,7 @@ func death():
 		#get_parent().add_child(newEvil)
 	#else:
 	$AnimatedSprite2D.play("death")
-	$AudioStreamPlayer.play()
+	#$AudioStreamPlayer.play()
 	await $AnimatedSprite2D.animation_finished
 	#script to drop a health pickup
 	#if number <= 6:
