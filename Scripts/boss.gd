@@ -103,6 +103,7 @@ func _on_shoot_timer_timeout():
 		if prevdir == 0:
 			prevdir = randi_range(1, 4)
 		dir = 0
+		num = 0
 	elif num % 2 == 1:
 		get_node("AnimatedSprite2D").play("boulder attack forward")
 		if Game.bossHP > 0:
