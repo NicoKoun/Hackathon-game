@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c4k1exrf4la3m" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="PackedScene" uid="uid://5jn6brdwk3u3" path="res://Scenes/sword.tscn" id="2_fkybt"]
-[ext_resource type="Shader" uid="uid://bmxjrje64gk8y" path="res://Sprites/player.gdshader" id="2_vgqql"]
+[ext_resource type="Shader" path="res://Sprites/player.gdshader" id="2_vgqql"]
 [ext_resource type="Texture2D" uid="uid://c8jkp0g0bd8eq" path="res://Sprites/Player_Sprite.png" id="4_vgqql"]
 [ext_resource type="Texture2D" uid="uid://d1sq33cjgfpi2" path="res://Sprites/death.png" id="5_fkybt"]
 

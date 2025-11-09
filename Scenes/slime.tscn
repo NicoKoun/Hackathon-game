@@ -83,6 +83,8 @@ autostart = true
 stream = ExtResource("4_f4si1")
 volume_db = -5.0
 
+[node name="AudioListener2D" type="AudioListener2D" parent="sfx_idle"]
+
 [node name="sfx_hurt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_5gljc")
 
