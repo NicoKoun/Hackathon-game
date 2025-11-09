@@ -1,4 +1,7 @@
 extends CharacterBody2D
+#ADD SOUND EFFECTS
+@onready var sfx_idle: AudioStreamPlayer = $sfx_idle
+@onready var sfx_hurt: AudioStreamPlayer = $sfx_hurt
 
 #const Star = preload("res://Star.tscn")
 const SPEED = 30.0
@@ -38,6 +41,7 @@ func _on_player_collision_body_entered(body):
 	if body.name == "player":
 		if body.invince == false:
 			body.gethurt()
+			sfx_hurt.play()
 			Game.playerHP -= 3
 
 func hurt():
