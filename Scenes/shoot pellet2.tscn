@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://dp6c2q87s3ac3"]
+
+[ext_resource type="Texture2D" uid="uid://b1n2c6rerowb0" path="res://sprites/shooty guy.png" id="1_8maxn"]
+
+[sub_resource type="GDScript" id="GDScript_rqy3j"]
+script/source = "extends Area2D
+
+const SPEED = 200
+var velocity = Vector2()
+var direction
+var hurtdir = 1
+var angle
+
+@onready var player = get_node(\"../../player/player\")
+
+func init(a):
+
+	angle = a
+
+func _physics_process(delta):
+	velocity.x = SPEED * delta * cos(angle) * -1
+	velocity.y = SPEED * delta * sin(angle) * -1
+	translate(velocity)
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	queue_free()
+
+
+
+
+func _on_body_entered(body):
+	if body.is_in_group(\"gamer\"):
+		if body.invince == false:
+			body.gethurt()
+			Game.playerHP -= 4
+			queue_free()
+
+
+func collide_with_wall(body: TileMap) -> void:
+	#maybe check if physics mask is 3
+	queue_free()
+"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_s7uxr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_14snf"]
+size = Vector2(9, 9)
+
+[node name="shoot pellet" type="Area2D"]
+script = SubResource("GDScript_rqy3j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+material = SubResource("CanvasItemMaterial_s7uxr")
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_14snf")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(-1, 1)
+texture = ExtResource("1_8maxn")
+hframes = 2
+vframes = 2
+frame = 2
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-0.5, 0.5)
+scale = Vector2(0.45, 0.45)
+
+[connection signal="body_entered" from="." to="." method="collide_with_wall"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
