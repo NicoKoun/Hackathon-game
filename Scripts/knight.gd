@@ -21,9 +21,7 @@ func _ready():
 	
 
 func _physics_process(delta):
-	if timer <= 0.0:
-		moving = not moving
-		timer = 2.0
+
 	if rad_to_deg(angle) > 90 or rad_to_deg(angle) < -90:
 		get_node("AnimatedSprite2D").flip_h = false
 	else:
@@ -31,21 +29,20 @@ func _physics_process(delta):
 	if moving:
 		velocity.x = SPEED * delta * cos(angle) * -1
 		velocity.y = SPEED * delta * sin(angle) * -1
-		if rad_to_deg(angle) > 0:
+		if rad_to_deg(angle) > 0 and (HP > 0): 
 			get_node("AnimatedSprite2D").play("Run_Back")
-		else:
+		elif (HP > 0):
 			get_node("AnimatedSprite2D").play("Run_Front")
 	else:
 		velocity.x = 0
 		velocity.y = 0
-		if rad_to_deg(angle) > 0:
+		if rad_to_deg(angle) > 0 and (HP > 0):
 			get_node("AnimatedSprite2D").play("Idle_Back")
-		else:
+		elif (HP > 0):
 			get_node("AnimatedSprite2D").play("Idle_Front")
 		
 	if(get_real_velocity() == Vector2(0,0)) and dir != 0:
 		changedir()
-	timer -= delta
 	
 	translate(velocity)
 func _on_player_collision_body_entered(body):
@@ -62,10 +59,14 @@ func hurt():
 	else:
 		tween.tween_property($AnimatedSprite2D, "modulate:v", 1, 0.25).from(15)
 		$Timer.stop()
-		dir = 0
+		$Movement.stop()
+		var prevmove = moving
+		moving = false
 		await get_tree().create_timer(0.5).timeout
-		dir = 1
-		$Timer.start()
+		if (HP > 0):
+			moving = prevmove
+			$Timer.start()
+			$Movement.start()
 
 func death():
 	var number = randi_range(1, 30)
@@ -93,21 +94,6 @@ func changedir():
 	
 
 
-func _on_shoot_timer_timeout():
-	$Timer.stop()
-	prevdir = dir
-	dir = 0
-	get_node("AnimatedSprite2D").play("attack")
-	if HP > 0:
-		await get_node("AnimatedSprite2D").animation_finished
-		var newKnife = Shoot.instantiate()
-		newKnife.global_position = self.global_position
-		newKnife.init(player.position.angle_to_point(self.position))
-		get_parent().add_child(newKnife)
-		get_node("AnimatedSprite2D").play("walk")
-		dir = prevdir
-		$Timer.start()
-
 
 func _on_visible_on_screen_notifier_2d_screen_entered():
 	process_mode = Node.PROCESS_MODE_INHERIT
@@ -115,3 +101,8 @@ func _on_visible_on_screen_notifier_2d_screen_entered():
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	process_mode = Node.PROCESS_MODE_DISABLED
+
+
+func _on_movement_timeout() -> void:
+	if (HP > 0):
+		moving = not moving

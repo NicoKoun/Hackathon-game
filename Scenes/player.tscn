@@ -1,11 +1,9 @@
-[gd_scene load_steps=50 format=3 uid="uid://dl0a3rlu4yb2u"]
+[gd_scene load_steps=50 format=3 uid="uid://dppjqaanqa3al"]
 
 [ext_resource type="Script" uid="uid://c4k1exrf4la3m" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="PackedScene" uid="uid://5jn6brdwk3u3" path="res://Scenes/sword.tscn" id="2_fkybt"]
-[ext_resource type="Shader" path="res://Sprites/player.gdshader" id="2_vgqql"]
+[ext_resource type="Shader" uid="uid://bmxjrje64gk8y" path="res://Sprites/player.gdshader" id="2_vgqql"]
 [ext_resource type="Texture2D" uid="uid://c8jkp0g0bd8eq" path="res://Sprites/Player_Sprite.png" id="4_vgqql"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fkybt"]
 shader = ExtResource("2_vgqql")
@@ -59,10 +57,6 @@ region = Rect2(288, 32, 32, 32)
 atlas = ExtResource("4_vgqql")
 region = Rect2(0, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qqcod"]
-atlas = ExtResource("4_vgqql")
-region = Rect2(32, 64, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_igrcy"]
 atlas = ExtResource("4_vgqql")
 region = Rect2(64, 64, 32, 32)
@@ -70,6 +64,10 @@ region = Rect2(64, 64, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_fs7ks"]
 atlas = ExtResource("4_vgqql")
 region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqcod"]
+atlas = ExtResource("4_vgqql")
+region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l6n3p"]
 atlas = ExtResource("4_vgqql")
@@ -196,7 +194,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"attackdown",
-"speed": 10.0
+"speed": 24.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -219,7 +217,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"attackleft",
-"speed": 10.0
+"speed": 24.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -229,20 +227,20 @@ animations = [{
 "texture": SubResource("AtlasTexture_fd4e3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qqcod")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_igrcy")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fs7ks")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_qqcod")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_l6n3p")
 }],
-"loop": true,
+"loop": false,
 "name": &"attackright",
-"speed": 10.0
+"speed": 24.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -262,7 +260,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"attackup",
-"speed": 10.0
+"speed": 24.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -368,6 +366,9 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
+size = Vector2(19.5, 31)
+
 [node name="player" type="CharacterBody2D" groups=["gamer"]]
 collision_layer = 3
 collision_mask = 3
@@ -375,13 +376,12 @@ script = ExtResource("1_cvnsp")
 
 [node name="sword" parent="." instance=ExtResource("2_fkybt")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_onrkg")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_fkybt")
 sprite_frames = SubResource("SpriteFrames_i3pqv")
-animation = &"walkdown"
+animation = &"attackright"
+frame = 4
+frame_progress = 1.0
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 rect = Rect2(-15, -16, 31, 32)
@@ -394,6 +394,10 @@ wait_time = 1.2
 
 [node name="blinktimer" type="Timer" parent="."]
 wait_time = 0.1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_onrkg")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="hurttimer" to="." method="_on_hurttimer_timeout"]
