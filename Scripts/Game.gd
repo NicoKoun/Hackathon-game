@@ -19,7 +19,7 @@ var sword = true
 #SET BOSS TO FALSE
 var boss = false
 #position of player for checkpoint
-var playerposition = Vector2(0,0)
+var playerposition = Vector2(400,242)
 
 #Score:
 var coins = 0

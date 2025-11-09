@@ -5,6 +5,11 @@ var lastkey = "down"
 var invince = false
 var ishurt = false
 var Attack = false
+
+
+func _ready():
+	self.position = Game.playerposition
+
 func _physics_process(delta: float) -> void:
 	var directionx = Input.get_axis("Left", "Right")
 	var directiony = Input.get_axis("Up", "Down")
