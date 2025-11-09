@@ -15,12 +15,12 @@ func _on_player_detection_body_exited(body: Node2D) -> void:
 		player_in_range = false
 		
 func _process(delta):
-	if player_in_range and Input.is_action_just_pressed("Attack"):
+	if is_open and player_in_range and Input.is_action_just_pressed("Attack"):
 		open()
 
 func open():
 	get_node("AnimatedSprite2D").play("Open")
 	var num_coins = randi_range(5, 20)
 	Game.coins += num_coins
-	is_open = false
+	is_open = true
 	
