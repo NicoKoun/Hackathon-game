@@ -16,3 +16,4 @@ func _process(_delta):
 	else:
 		$ProgressBar.show()
 		#$BossBar.max_value = 75
+	$Coins.text = "Coins: " + str(Game.coins)

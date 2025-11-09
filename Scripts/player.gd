@@ -136,6 +136,7 @@ func _on_blinktimer_timeout():
 	get_node("AnimatedSprite2D").visible = !get_node("AnimatedSprite2D").visible
 
 func death():
+	print("ASFDASFADFASDf")
 	#Temporary death script, does an animation before starting a timer to respawn the player.
 	get_node("AnimatedSprite2D").visible = true
 	#Game.muted = true
@@ -147,14 +148,15 @@ func death():
 	set_collision_mask_value(1, false)
 	set_collision_layer_value(2, false)
 	set_collision_mask_value(2, false)
-	#camera.get_child(0).visible = true
+	#camera.get_child(0).visible = true add this back
 	for n in range(1, 7):
 		get_node("AnimatedSprite2D").visible = !get_node("AnimatedSprite2D").visible
 		await get_tree().create_timer(0.1).timeout
+		
 	get_node("AnimatedSprite2D").play("death")
 	#$AudioStreamPlayer.play()
 	await get_node("AnimatedSprite2D").animation_finished
-	get_node("AnimatedSprite2D").visible = false
+	get_tree().change_scene_to_file("res://Scenes/GameOver.tscn")
 	#$deathTimer.start()
 
 

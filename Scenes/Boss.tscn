@@ -1,0 +1,113 @@
+[gd_scene load_steps=14 format=3 uid="uid://cx21iajg3b5xw"]
+
+[ext_resource type="Script" uid="uid://dkfo6tu2kaf1h" path="res://Scripts/boss.gd" id="1_me6e5"]
+[ext_resource type="Texture2D" uid="uid://o4saecs1br00" path="res://Sprites/Pumpkin with Attack.png" id="2_j5nlm"]
+[ext_resource type="Texture2D" uid="uid://d1sq33cjgfpi2" path="res://Sprites/death.png" id="3_ouxnj"]
+[ext_resource type="Texture2D" uid="uid://2nfbhj6j6663" path="res://Sprites/Pumpkin Ghost.png" id="4_6tp3b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4a55"]
+atlas = ExtResource("2_j5nlm")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7nnr"]
+atlas = ExtResource("2_j5nlm")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4782m"]
+atlas = ExtResource("3_ouxnj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpvbn"]
+atlas = ExtResource("3_ouxnj")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jp0iq"]
+atlas = ExtResource("3_ouxnj")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvm7d"]
+atlas = ExtResource("4_6tp3b")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n3nwn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4a55")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7nnr")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4782m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpvbn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jp0iq")
+}],
+"loop": false,
+"name": &"death",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvm7d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l4a55"]
+size = Vector2(16, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e7nnr"]
+size = Vector2(17.75, 28)
+
+[node name="Boss" type="CharacterBody2D" groups=["enemy"]]
+process_mode = 4
+collision_layer = 9
+collision_mask = 9
+script = ExtResource("1_me6e5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n3nwn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -3)
+shape = SubResource("RectangleShape2D_l4a55")
+
+[node name="player collision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player collision"]
+position = Vector2(-1.875, -3)
+shape = SubResource("RectangleShape2D_e7nnr")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-10, -16, 16, 26)
+
+[node name="shootTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Timer" type="Timer" parent="." groups=["enemy"]]
+wait_time = 2.5
+autostart = true
+
+[node name="breakTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="body_entered" from="player collision" to="." method="_on_player_collision_body_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="shootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="breakTimer" to="." method="_on_break_timer_timeout"]

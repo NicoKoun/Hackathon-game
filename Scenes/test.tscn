@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://cc7ob534sxcrf"]
+
+[ext_resource type="Script" uid="uid://6r3q6t8f1vdy" path="res://Scripts/main.gd" id="1_35xla"]
+[ext_resource type="PackedScene" uid="uid://dppjqaanqa3al" path="res://Scenes/player.tscn" id="3_5wyu1"]
+[ext_resource type="PackedScene" uid="uid://0xhhbwns2t0m" path="res://Scenes/slime.tscn" id="4_i3aeo"]
+[ext_resource type="PackedScene" uid="uid://bhvgtmunokp3f" path="res://Scenes/hpbar.tscn" id="5_2cgwh"]
+[ext_resource type="PackedScene" uid="uid://bi1e2u3mufkpk" path="res://Scenes/chest.tscn" id="5_35xla"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_35xla")
+
+[node name="player" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+position = Vector2(400, 226)
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0
+
+[node name="player" parent="player" instance=ExtResource("3_5wyu1")]
+position = Vector2(400, 242)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("5_2cgwh")]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="slime" parent="Node2D" instance=ExtResource("4_i3aeo")]
+position = Vector2(555, 302)
+
+[node name="Chest" parent="." instance=ExtResource("5_35xla")]
+position = Vector2(568, 151)
