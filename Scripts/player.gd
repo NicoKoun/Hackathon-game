@@ -1,5 +1,8 @@
 extends CharacterBody2D
 const SPEED = 150.0
+#ADD AUDIO
+@onready var sfx_walk: AudioStreamPlayer2D = $sfx_walk
+@onready var sfx_hurt: AudioStreamPlayer2D = $sfx_hurt
 
 var lastkey = "down"
 var invince = false
@@ -15,7 +18,6 @@ func _physics_process(delta: float) -> void:
 	var directiony = Input.get_axis("Up", "Down")
 	if directionx and Game.canmove == true and Game.dead == false:
 		velocity.x = directionx * SPEED
-		
 		if directionx == -1:
 			if !directiony:
 				get_node("AnimatedSprite2D").play("walkleft")
@@ -104,6 +106,7 @@ func gethurt():
 		return
 	$hurttimer.start()
 	$invincetimer.start()
+	sfx_hurt.play()
 	set_collision_layer_value(1, false)
 	set_collision_mask_value(1, false)
 	set_collision_layer_value(3, false)

@@ -1,10 +1,12 @@
-[gd_scene load_steps=58 format=3 uid="uid://dppjqaanqa3al"]
+[gd_scene load_steps=60 format=3 uid="uid://dppjqaanqa3al"]
 
 [ext_resource type="Script" uid="uid://c4k1exrf4la3m" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="PackedScene" uid="uid://5jn6brdwk3u3" path="res://Scenes/sword.tscn" id="2_fkybt"]
 [ext_resource type="Shader" path="res://Sprites/player.gdshader" id="2_vgqql"]
 [ext_resource type="Texture2D" uid="uid://c8jkp0g0bd8eq" path="res://Sprites/Player_Sprite.png" id="4_vgqql"]
 [ext_resource type="Texture2D" uid="uid://d1sq33cjgfpi2" path="res://Sprites/death.png" id="5_fkybt"]
+[ext_resource type="AudioStream" uid="uid://cid8br4w4mk45" path="res://Audio/footstep_1.mp3" id="6_x3wgy"]
+[ext_resource type="AudioStream" uid="uid://bkjwjgt2ss1jk" path="res://Audio/player_hurt.mp3" id="7_3smsa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fkybt"]
 shader = ExtResource("2_vgqql")
@@ -492,6 +494,12 @@ wait_time = 0.1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="sfx_walk" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_x3wgy")
+
+[node name="sfx_hurt" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_3smsa")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="hurttimer" to="." method="_on_hurttimer_timeout"]
