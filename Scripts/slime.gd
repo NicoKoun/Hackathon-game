@@ -61,6 +61,8 @@ func hurt():
 func death():
 	#var number = randi_range(1, 30)
 	dir = 0
+	sfx_idle.stop()
+	sfx_hurt.stop()
 	$Timer.stop()
 	#gimmick of turing into another enemy upon death
 	#if self.is_in_group("evil"):
