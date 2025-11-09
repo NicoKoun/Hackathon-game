@@ -1,17 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://cx21iajg3b5xw"]
+[gd_scene load_steps=16 format=3 uid="uid://cx21iajg3b5xw"]
 
-[ext_resource type="Script" uid="uid://dkfo6tu2kaf1h" path="res://Scripts/boss.gd" id="1_me6e5"]
-[ext_resource type="Texture2D" uid="uid://o4saecs1br00" path="res://Sprites/Pumpkin with Attack.png" id="2_j5nlm"]
+[ext_resource type="Script" path="res://Scripts/boss.gd" id="1_me6e5"]
 [ext_resource type="Texture2D" uid="uid://d1sq33cjgfpi2" path="res://Sprites/death.png" id="3_ouxnj"]
-[ext_resource type="Texture2D" uid="uid://2nfbhj6j6663" path="res://Sprites/Pumpkin Ghost.png" id="4_6tp3b"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l4a55"]
-atlas = ExtResource("2_j5nlm")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e7nnr"]
-atlas = ExtResource("2_j5nlm")
-region = Rect2(32, 0, 32, 32)
+[ext_resource type="Texture2D" uid="uid://bleb4uhy3ftdh" path="res://Sprites/Boss_Sprite.png" id="3_smvyy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4782m"]
 atlas = ExtResource("3_ouxnj")
@@ -25,23 +16,32 @@ region = Rect2(32, 0, 32, 32)
 atlas = ExtResource("3_ouxnj")
 region = Rect2(0, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vvm7d"]
-atlas = ExtResource("4_6tp3b")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_me6e5"]
+atlas = ExtResource("3_smvyy")
+region = Rect2(256, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5nlm"]
+atlas = ExtResource("3_smvyy")
+region = Rect2(320, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ouxnj"]
+atlas = ExtResource("3_smvyy")
+region = Rect2(384, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tp3b"]
+atlas = ExtResource("3_smvyy")
+region = Rect2(448, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gjka"]
+atlas = ExtResource("3_smvyy")
+region = Rect2(512, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iy1o6"]
+atlas = ExtResource("3_smvyy")
+region = Rect2(576, 192, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n3nwn"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l4a55")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e7nnr")
-}],
-"loop": false,
-"name": &"attack",
-"speed": 4.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4782m")
@@ -56,13 +56,33 @@ animations = [{
 "name": &"death",
 "speed": 12.0
 }, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vvm7d")
-}],
+"frames": [],
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_me6e5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5nlm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ouxnj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tp3b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gjka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iy1o6")
+}],
+"loop": false,
+"name": &"ground_attack",
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l4a55"]
@@ -79,6 +99,7 @@ script = ExtResource("1_me6e5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_n3nwn")
+animation = &"ground_attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, -3)

@@ -16,10 +16,10 @@ var canmove = true
 var got = false
 #SET SWORD TO TRUE
 var sword = true
-#SET BOSS TO FALSE
+#SET BOSS TO FALSE, determines if we are bossfighting rn
 var boss = false
 #position of player for checkpoint
-var playerposition = Vector2(0,0)
+var playerposition = Vector2(400,242)
 
 #Score:
 var coins = 0

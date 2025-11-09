@@ -108,7 +108,7 @@ func _on_shoot_timer_timeout():
 			prevdir = randi_range(1, 4)
 		dir = 0
 	elif num % 2 == 1:
-		get_node("AnimatedSprite2D").play("attack")
+		get_node("AnimatedSprite2D").play("rockthrow")
 		if HP > 0:
 			await get_node("AnimatedSprite2D").animation_finished
 			var newKnife = Shoot.instantiate()
