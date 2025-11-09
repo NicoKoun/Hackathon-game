@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://ccwut7ltta4yr"]
+[gd_scene load_steps=33 format=4 uid="uid://ccwut7ltta4yr"]
 
 [ext_resource type="Script" uid="uid://6r3q6t8f1vdy" path="res://Scripts/main.gd" id="1_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://dppjqaanqa3al" path="res://Scenes/player.tscn" id="1_jjgbg"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://v20hh25t25he" path="res://Scenes/potions.tscn" id="13_fdnlq"]
 [ext_resource type="PackedScene" path="res://Scenes/chest.tscn" id="14_jkdf5"]
 [ext_resource type="PackedScene" uid="uid://cxam5yukyfla" path="res://Scenes/crown.tscn" id="15_wsu2k"]
+[ext_resource type="PackedScene" uid="uid://pmwa47vf56yg" path="res://Scripts/area_2d.tscn" id="16_h1bgf"]
+[ext_resource type="PackedScene" uid="uid://cx21iajg3b5xw" path="res://Scenes/Boss.tscn" id="17_b3802"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kry3j"]
 texture = ExtResource("2_jjvhh")
@@ -299,9 +301,6 @@ position = Vector2(909, 530)
 [node name="Potions5" parent="." instance=ExtResource("13_fdnlq")]
 position = Vector2(2253, 528)
 
-[node name="Chest" parent="." instance=ExtResource("14_jkdf5")]
-position = Vector2(2800, 2001)
-
 [node name="Chest2" parent="." instance=ExtResource("14_jkdf5")]
 position = Vector2(79, 528)
 
@@ -405,4 +404,33 @@ position = Vector2(2484, 513)
 position = Vector2(1728, 1252)
 
 [node name="Crown" parent="." instance=ExtResource("15_wsu2k")]
-position = Vector2(308, 235)
+position = Vector2(2800, 2000)
+
+[node name="Coin39" parent="." instance=ExtResource("12_6iyac")]
+position = Vector2(2699, 2000)
+
+[node name="Coin40" parent="." instance=ExtResource("12_6iyac")]
+position = Vector2(2799, 1937)
+
+[node name="Coin41" parent="." instance=ExtResource("12_6iyac")]
+position = Vector2(2804, 2036)
+
+[node name="Coin42" parent="." instance=ExtResource("12_6iyac")]
+position = Vector2(2895, 2001)
+
+[node name="Area2D" parent="." instance=ExtResource("16_h1bgf")]
+position = Vector2(2384, 2000)
+
+[node name="Area2D2" parent="." instance=ExtResource("16_h1bgf")]
+position = Vector2(2384, 2032)
+
+[node name="Area2D3" parent="." instance=ExtResource("16_h1bgf")]
+position = Vector2(2416, 2000)
+
+[node name="Area2D4" parent="." instance=ExtResource("16_h1bgf")]
+position = Vector2(2416, 2032)
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(1986, 1978)
+
+[node name="Boss" parent="Node2D" instance=ExtResource("17_b3802")]
