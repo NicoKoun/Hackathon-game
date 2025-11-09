@@ -21,7 +21,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Area2D" type="Area2D"]
+[node name="Area2D" type="CharacterBody2D"]
+collision_layer = 15
+collision_mask = 15
 script = ExtResource("1_dl81w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
