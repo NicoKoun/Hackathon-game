@@ -3,7 +3,6 @@ extends CharacterBody2D
 const potion = preload("res://Scenes/potions.tscn")
 const SPEED = 80.0
 const JUMP_VELOCITY = -400.0
-var HP = 5
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var dir = 1
@@ -48,9 +47,9 @@ func _on_player_collision_body_entered(body):
 			Game.playerHP -= 3
 
 func hurt():
-	HP -= 1
+	Game.bossHP -= 1
 	var tween: Tween = create_tween()
-	if HP <= 0:
+	if Game.bossHP <= 0:
 		death()
 	else:
 		tween.tween_property($AnimatedSprite2D, "modulate:v", 1, 0.25).from(15)
@@ -109,7 +108,7 @@ func _on_shoot_timer_timeout():
 		dir = 0
 	elif num % 2 == 1:
 		get_node("AnimatedSprite2D").play("rockthrow")
-		if HP > 0:
+		if Game.bossHP > 0:
 			await get_node("AnimatedSprite2D").animation_finished
 			var newKnife = Shoot.instantiate()
 			newKnife.global_position = self.global_position
@@ -124,6 +123,7 @@ func _on_shoot_timer_timeout():
 
 
 func _on_visible_on_screen_notifier_2d_screen_entered():
+	Game.boss = true
 	process_mode = Node.PROCESS_MODE_INHERIT
 
 
