@@ -1,3 +1,19 @@
-[gd_scene load_steps=0 format=3 uid="uid://bascd3c2j6d0r"]
+[gd_scene load_steps=4 format=3 uid="uid://bascd3c2j6d0r"]
+
+[ext_resource type="Script" uid="uid://barheokx276x1" path="res://Scenes/quake(1996).gd" id="1_iye1l"]
+[ext_resource type="Texture2D" uid="uid://o5tmkf3dn66n" path="res://Sprites/crater_sprite.png" id="2_dd54l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q1whr"]
+size = Vector2(64, 64)
 
 [node name="Quake(1996)" type="Area2D"]
+script = ExtResource("1_iye1l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -7
+texture = ExtResource("2_dd54l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_q1whr")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

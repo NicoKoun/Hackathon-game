@@ -200,9 +200,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_sbogr")
 }],
-"loop": true,
+"loop": false,
 "name": &"boulder attack backward",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -226,9 +226,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ij1pr")
 }],
-"loop": true,
+"loop": false,
 "name": &"boulder attack forward",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -249,9 +249,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cnmx5")
 }],
-"loop": true,
+"loop": false,
 "name": &"boulder attack left",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -272,9 +272,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uuly0")
 }],
-"loop": true,
+"loop": false,
 "name": &"boulder attack right",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -389,6 +389,7 @@ rect = Rect2(-32, -32, 64, 64)
 
 [node name="shootTimer" type="Timer" parent="."]
 wait_time = 2.0
+one_shot = true
 autostart = true
 
 [node name="Timer" type="Timer" parent="." groups=["enemy"]]

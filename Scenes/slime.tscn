@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://0xhhbwns2t0m"]
+[gd_scene load_steps=13 format=3 uid="uid://0xhhbwns2t0m"]
 
 [ext_resource type="Script" uid="uid://i4hg4kyovv4v" path="res://Scripts/slime.gd" id="1_aiwxb"]
 [ext_resource type="Texture2D" uid="uid://d1sq33cjgfpi2" path="res://Sprites/death.png" id="1_swwnm"]
 [ext_resource type="Texture2D" uid="uid://df7l6ri0b2rrc" path="res://Sprites/copyright free slime.png" id="2_aiwxb"]
+[ext_resource type="AudioStream" uid="uid://dipnw6wmn25ba" path="res://Audio/slime_noise.mp3" id="4_f4si1"]
+[ext_resource type="AudioStream" uid="uid://ltqn0ysw65kt" path="res://Audio/hit_slime.mp3" id="5_5gljc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_paq7w"]
 atlas = ExtResource("1_swwnm")
@@ -77,10 +79,14 @@ autostart = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+[node name="sfx_idle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_f4si1")
 volume_db = -5.0
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioListener2D" type="AudioListener2D" parent="sfx_idle"]
+
+[node name="sfx_hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_5gljc")
 
 [connection signal="body_entered" from="player collision" to="." method="_on_player_collision_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
