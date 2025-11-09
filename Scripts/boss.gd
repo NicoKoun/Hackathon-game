@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 80.0
+const SPEED = 150.0
 const JUMP_VELOCITY = -400.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -89,6 +89,7 @@ func changedir():
 
 
 func _on_shoot_timer_timeout():
+	
 	num += 1
 	$Timer.stop()
 	prevdir = dir
@@ -113,17 +114,20 @@ func _on_shoot_timer_timeout():
 			get_node("AnimatedSprite2D").play("default")
 			dir = prevdir
 			$Timer.start()
+			$shootTimer.start()
 	elif num % 2 == 0:
-		get_node("AnimatedSprite2D").play("rockthrow")
+		get_node("AnimatedSprite2D").play("ground_attack")
 		if Game.bossHP > 0:
 			await get_node("AnimatedSprite2D").animation_finished
 			var newKnife = Quake.instantiate()
 			newKnife.global_position = self.global_position
-			newKnife.init(player.position.angle_to_point(self.position))
+			#newKnife.init(player.position.angle_to_point(self.position))
 			get_parent().add_child(newKnife)
 			get_node("AnimatedSprite2D").play("default")
 			dir = prevdir
 			$Timer.start()
+			$shootTimer.start()
+	
 	
 
 
