@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://cc7ob534sxcrf"]
+[gd_scene load_steps=10 format=4 uid="uid://cc7ob534sxcrf"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_35xla"]
 [ext_resource type="Texture2D" uid="uid://c7a33susr7m06" path="res://Sprites/Water.png" id="2_35xla"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" path="res://Scenes/hpbar.tscn" id="5_2cgwh"]
 [ext_resource type="PackedScene" uid="uid://cah273vehy7qc" path="res://Scenes/chest.tscn" id="5_35xla"]
 [ext_resource type="PackedScene" uid="uid://cx21iajg3b5xw" path="res://Scenes/Boss.tscn" id="5_i3aeo"]
+[ext_resource type="PackedScene" uid="uid://bt3v8ysg3mfde" path="res://Scenes/Checkpoint.tscn" id="7_5wyu1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i3aeo"]
 texture = ExtResource("2_35xla")
@@ -65,3 +66,8 @@ position = Vector2(389, 169)
 
 [node name="Chest" parent="." instance=ExtResource("5_35xla")]
 position = Vector2(568, 151)
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Checkpoint" parent="Node2D" instance=ExtResource("7_5wyu1")]
+position = Vector2(558, 193)
