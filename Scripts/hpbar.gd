@@ -7,7 +7,7 @@ func _process(_delta):
 	#SET HEALTH BAR VALUE TO BOSSES HEALTH
 	$BossBar.value = int(Game.bossHP)
 	#SHOW BOSS HEALTH BAR AS LONG AS THE BOSS AND PLAYER ARE ALIVE
-	if Game.boss == true and Game.dead == false:
+	if Game.boss == true:
 		$BossBar.show()
 	else:
 		$BossBar.hide()
