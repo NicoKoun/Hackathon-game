@@ -1,3 +1,92 @@
-[gd_scene format=3 uid="uid://i2pxmcno4fjn"]
+[gd_scene load_steps=5 format=3 uid="uid://i2pxmcno4fjn"]
+
+[ext_resource type="PackedScene" uid="uid://4xbg2x3k5qgq" path="res://Scenes/knight.tscn" id="1_4fs34"]
+[ext_resource type="PackedScene" uid="uid://0xhhbwns2t0m" path="res://Scenes/slime.tscn" id="1_qqdpm"]
+[ext_resource type="PackedScene" uid="uid://betsak2jifj1a" path="res://Scenes/pumpkin_man.tscn" id="3_4fs34"]
+[ext_resource type="PackedScene" uid="uid://dhst82anlj2dv" path="res://Scenes/shooty gremlin.tscn" id="4_2md8b"]
 
 [node name="ememy" type="Node2D"]
+
+[node name="Knight" parent="." instance=ExtResource("1_4fs34")]
+position = Vector2(2501, 374)
+
+[node name="slime" parent="." instance=ExtResource("1_qqdpm")]
+position = Vector2(2727, 94)
+
+[node name="Knight2" parent="." instance=ExtResource("1_4fs34")]
+position = Vector2(90, 753)
+
+[node name="Knight3" parent="." instance=ExtResource("1_4fs34")]
+position = Vector2(497, 1291)
+
+[node name="Knight4" parent="." instance=ExtResource("1_4fs34")]
+position = Vector2(1479, 341)
+
+[node name="slime2" parent="." instance=ExtResource("1_qqdpm")]
+position = Vector2(1014, 379)
+
+[node name="slime3" parent="." instance=ExtResource("1_qqdpm")]
+position = Vector2(1250, 88)
+
+[node name="slime4" parent="." instance=ExtResource("1_qqdpm")]
+position = Vector2(1210, 699)
+
+[node name="Pumpkin man" parent="." instance=ExtResource("3_4fs34")]
+position = Vector2(656, 656)
+
+[node name="shooty gremlin" parent="." instance=ExtResource("4_2md8b")]
+position = Vector2(1422, 828)
+
+[node name="Knight5" parent="." instance=ExtResource("1_4fs34")]
+position = Vector2(1744, 721)
+
+[node name="slime5" parent="." instance=ExtResource("1_qqdpm")]
+position = Vector2(1942, 655)
+
+[node name="slime6" parent="." instance=ExtResource("1_qqdpm")]
+position = Vector2(2308, 691)
+
+[node name="shooty gremlin2" parent="." instance=ExtResource("4_2md8b")]
+position = Vector2(1809, 527)
+
+[node name="slime7" parent="." instance=ExtResource("1_qqdpm")]
+position = Vector2(2499, 816)
+
+[node name="Knight6" parent="." instance=ExtResource("1_4fs34")]
+position = Vector2(2912, 767)
+
+[node name="shooty gremlin3" parent="." instance=ExtResource("4_2md8b")]
+position = Vector2(946, 1073)
+
+[node name="Knight7" parent="." instance=ExtResource("1_4fs34")]
+position = Vector2(1431, 1172)
+
+[node name="slime8" parent="." instance=ExtResource("1_qqdpm")]
+position = Vector2(1268, 1010)
+
+[node name="slime9" parent="." instance=ExtResource("1_qqdpm")]
+position = Vector2(212, 1048)
+
+[node name="shooty gremlin4" parent="." instance=ExtResource("4_2md8b")]
+position = Vector2(1166, 1585)
+
+[node name="slime10" parent="." instance=ExtResource("1_qqdpm")]
+position = Vector2(1039, 1423)
+
+[node name="Pumpkin man2" parent="." instance=ExtResource("3_4fs34")]
+position = Vector2(1394, 1460)
+
+[node name="slime11" parent="." instance=ExtResource("1_qqdpm")]
+position = Vector2(2695, 1407)
+
+[node name="Knight8" parent="." instance=ExtResource("1_4fs34")]
+position = Vector2(3113, 1526)
+
+[node name="shooty gremlin5" parent="." instance=ExtResource("4_2md8b")]
+position = Vector2(2800, 1170)
+
+[node name="slime12" parent="." instance=ExtResource("1_qqdpm")]
+position = Vector2(2523, 1090)
+
+[node name="slime13" parent="." instance=ExtResource("1_qqdpm")]
+position = Vector2(2991, 976)
