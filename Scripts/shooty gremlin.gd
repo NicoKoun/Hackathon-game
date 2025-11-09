@@ -7,7 +7,7 @@ var HP = 5
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var dir = 1
-const Shoot = preload("res://Scenes/shoot pellet.tscn")
+const Shoot = preload("res://Scenes/shoot pellet2.tscn")
 var player
 var prevdir = 1
 func _ready():
