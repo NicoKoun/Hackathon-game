@@ -14,3 +14,24 @@ position = Vector2(1286, 634)
 
 [node name="Knight" parent="." instance=ExtResource("1_4fs34")]
 position = Vector2(103, 67)
+
+[node name="slime2" parent="." instance=ExtResource("1_qqdpm")]
+position = Vector2(432, 1139)
+
+[node name="Knight2" parent="." instance=ExtResource("1_4fs34")]
+position = Vector2(88, 1884)
+
+[node name="Knight3" parent="." instance=ExtResource("1_4fs34")]
+position = Vector2(348, 1884)
+
+[node name="slime3" parent="." instance=ExtResource("1_qqdpm")]
+position = Vector2(649, 1113)
+
+[node name="Pumpkin man2" parent="." instance=ExtResource("3_4fs34")]
+position = Vector2(1079, 887)
+
+[node name="Pumpkin man3" parent="." instance=ExtResource("3_4fs34")]
+position = Vector2(1200, 1276)
+
+[node name="slime4" parent="." instance=ExtResource("1_qqdpm")]
+position = Vector2(1069, 1280)
