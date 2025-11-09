@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cajldna3qs3xt"]
+[gd_scene load_steps=6 format=3 uid="uid://pmwa47vf56yg"]
 
-[ext_resource type="Script" uid="uid://b4ixyyoesfxg3" path="res://Scripts/area_2d.gd" id="1_dl81w"]
+[ext_resource type="Script" path="res://Scripts/area_2d.gd" id="1_dl81w"]
 [ext_resource type="Texture2D" uid="uid://hseqc70ebpu8" path="res://Sprites/Dungeon Tiles.png" id="2_5rgpn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dl81w"]
-size = Vector2(20, 21)
+size = Vector2(32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5rgpn"]
 atlas = ExtResource("2_5rgpn")
@@ -32,6 +32,5 @@ shape = SubResource("RectangleShape2D_dl81w")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2.3841858e-07, 0.5000001)
-scale = Vector2(0.5625, 0.59375)
 sprite_frames = SubResource("SpriteFrames_c0nl8")
 animation = &"Wall"

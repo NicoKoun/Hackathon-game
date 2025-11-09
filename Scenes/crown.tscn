@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxam5yukyfla"]
+
+[ext_resource type="Texture2D" uid="uid://eiwfihfpikw6" path="res://Sprites/Crown.png" id="1_24twk"]
+
+[sub_resource type="GDScript" id="GDScript_1wk3g"]
+script/source = "extends Area2D
+	
+func _on_body_entered(body):
+	print(body)
+	if body.name == \"player\":
+		var tween = get_tree().create_tween()
+		$CollisionShape2D.queue_free()
+		tween.tween_property(self, \"position\", position - Vector2(0,25), 0.1)
+		tween.tween_property(self, \"modulate:a\", 0, 0.1)
+		get_tree().change_scene_to_file(\"res://Scenes/main_menu.tscn\")
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3gbvv"]
+size = Vector2(30, 23)
+
+[node name="Crown" type="Area2D"]
+script = SubResource("GDScript_1wk3g")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_24twk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_3gbvv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

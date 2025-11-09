@@ -1,8 +1,13 @@
 extends Area2D
+#ADD AUDIO
+@onready var sfx_1: AudioStreamPlayer2D = $sfx_1
+
 var dirright = false
 var ogposition
+
 # Called when the node enters the scene tree for the first time.
 func init(direction):
+	sfx_1.play();
 	$CollisionShape2D.disabled = false
 	$AnimatedSprite2D.visible = true
 	ogposition = self.position

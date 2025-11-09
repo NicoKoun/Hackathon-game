@@ -17,4 +17,3 @@ func _on_body_entered(body: Node2D) -> void:
 		if body.invince == false:
 			body.gethurt()
 			Game.playerHP -= 5
-			queue_free()
