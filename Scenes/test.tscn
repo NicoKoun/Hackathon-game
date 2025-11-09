@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cc7ob534sxcrf"]
+[gd_scene load_steps=6 format=3 uid="uid://dlhb835ag755l"]
 
-[ext_resource type="Script" uid="uid://6r3q6t8f1vdy" path="res://Scripts/main.gd" id="1_35xla"]
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_35xla"]
 [ext_resource type="PackedScene" uid="uid://dppjqaanqa3al" path="res://Scenes/player.tscn" id="3_5wyu1"]
-[ext_resource type="PackedScene" uid="uid://cuto1eqfjvbwo" path="res://Scenes/Coin.tscn" id="4_ys1qc"]
-[ext_resource type="PackedScene" uid="uid://bhvgtmunokp3f" path="res://Scenes/hpbar.tscn" id="5_2cgwh"]
+[ext_resource type="PackedScene" uid="uid://b016cw2fpkmit" path="res://Scenes/Coin.tscn" id="4_ys1qc"]
+[ext_resource type="PackedScene" path="res://Scenes/hpbar.tscn" id="5_2cgwh"]
+[ext_resource type="PackedScene" uid="uid://cah273vehy7qc" path="res://Scenes/chest.tscn" id="5_35xla"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_35xla")
@@ -27,3 +28,6 @@ position = Vector2(400, 242)
 
 [node name="Coin" parent="Node2D" instance=ExtResource("4_ys1qc")]
 position = Vector2(289, 168)
+
+[node name="Chest" parent="." instance=ExtResource("5_35xla")]
+position = Vector2(568, 151)
