@@ -7,6 +7,10 @@
 script/source = "extends Area2D
 var heal = 3
 
+func _ready()-> void:
+	if self.is_in_group(\"Big\"):
+		init(5)
+
 func init(d):
 	if d == 5:
 		heal = 10
