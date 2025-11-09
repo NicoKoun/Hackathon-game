@@ -12,6 +12,8 @@ const Shoot = preload("res://Scenes/shoot pellet.tscn")
 #Also add quake attack.
 var player
 var prevdir = 1
+var num = 0
+var takingbreak = false
 func _ready():
 	#add audio stream player
 	player = get_node("../../player/player")
@@ -54,14 +56,15 @@ func hurt():
 		tween.tween_property($AnimatedSprite2D, "modulate:v", 1, 0.25).from(15)
 		$Timer.stop()
 		$shootTimer.stop()
-		var prevdir = dir
+		prevdir = dir
 		if prevdir == 0:
 			prevdir = randi_range(1, 4)
 		dir = 0
 		await get_tree().create_timer(0.5).timeout
-		dir = prevdir
-		$shootTimer.start()
-		$Timer.start()
+		if takingbreak == false:
+			dir = prevdir
+			$shootTimer.start()
+			$Timer.start()
 
 func death():
 	var number = randi_range(1, 30)
@@ -91,19 +94,33 @@ func changedir():
 
 
 func _on_shoot_timer_timeout():
+	num += 1
 	$Timer.stop()
 	prevdir = dir
 	dir = 0
-	get_node("AnimatedSprite2D").play("attack")
-	if HP > 0:
-		await get_node("AnimatedSprite2D").animation_finished
-		var newKnife = Shoot.instantiate()
-		newKnife.global_position = self.global_position
-		#newKnife.init(player.position.angle_to_point(self.position))
-		get_parent().add_child(newKnife)
-		get_node("AnimatedSprite2D").play("default")
-		dir = prevdir
-		$Timer.start()
+	
+	if num == 6:
+		$breakTimer.start()
+		$Timer.stop()
+		$shootTimer.stop()
+		prevdir = dir
+		if prevdir == 0:
+			prevdir = randi_range(1, 4)
+		dir = 0
+	elif num % 2 == 1:
+		get_node("AnimatedSprite2D").play("attack")
+		if HP > 0:
+			await get_node("AnimatedSprite2D").animation_finished
+			var newKnife = Shoot.instantiate()
+			newKnife.global_position = self.global_position
+			#newKnife.init(player.position.angle_to_point(self.position))
+			get_parent().add_child(newKnife)
+			get_node("AnimatedSprite2D").play("default")
+			dir = prevdir
+			$Timer.start()
+	elif num % 2 == 0:
+		print("quake attack")
+	
 
 
 func _on_visible_on_screen_notifier_2d_screen_entered():
@@ -112,3 +129,10 @@ func _on_visible_on_screen_notifier_2d_screen_entered():
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	process_mode = Node.PROCESS_MODE_DISABLED
+
+	
+
+func _on_break_timer_timeout() -> void:
+	dir = prevdir
+	$shootTimer.start()
+	$Timer.start()
