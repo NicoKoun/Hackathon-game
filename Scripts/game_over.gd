@@ -12,6 +12,15 @@ func _process(delta):
 
 
 func _on_play_again_pressed():
+	Game.playerHP = 30
+	Game.bossHP = 30
+	Game.dead = false
+	Game.camchange = false
+	Game.canmove = true
+	Game.got = false
+	Game.sword = true
+	Game.boss = false
+	Game.coins = 0
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")
 	
 
