@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuto1eqfjvbwo"]
+
+[ext_resource type="Texture2D" uid="uid://l6to5k2htbgu" path="res://Sprites/Coin.png" id="1_qrc3l"]
+
+[sub_resource type="GDScript" id="GDScript_somhs"]
+script/source = "extends Area2D
+
+	
+
+
+	
+func _on_body_entered(body):
+	if body.name == \"player\":
+		Game.coins += 1
+		var tween = get_tree().create_tween()
+		$CollisionShape2D.queue_free()
+		tween.tween_property(self, \"position\", position - Vector2(0,25), 0.1)
+		tween.tween_property(self, \"modulate:a\", 0, 0.1)
+		tween.tween_callback(queue_free)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hok44"]
+size = Vector2(20, 31)
+
+[node name="Coin" type="Area2D"]
+script = SubResource("GDScript_somhs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_qrc3l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_hok44")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

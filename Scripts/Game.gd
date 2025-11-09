@@ -18,3 +18,7 @@ var got = false
 var sword = true
 #SET BOSS TO FALSE
 var boss = false
+
+
+#Score:
+var coins = 0
